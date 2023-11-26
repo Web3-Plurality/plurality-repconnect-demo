@@ -1,5 +1,5 @@
 import React from 'react';
-import PluralityPopupWidget from 'plurality-repconnect-widget';
+import PluralityPopupWidget from 'web3-plurality-repconnect-widget';
 //import PluralityPopupIframe from './PluralityPopupIframe';
 
 const App = () => {
