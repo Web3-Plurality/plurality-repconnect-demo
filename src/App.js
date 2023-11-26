@@ -1,23 +1,57 @@
-import React from 'react';
-import PluralityPopupWidget from 'web3-plurality-repconnect-widget';
-//import PluralityPopupIframe from './PluralityPopupIframe';
+import React, { Component } from "react";
+import ReactGA from "react-ga";
+import $ from "jquery";
+import "./App.css";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import About from "./Components/About";
+import Resume from "./Components/Resume";
+import Contact from "./Components/Contact";
+import Portfolio from "./Components/Portfolio";
 
-const App = () => {
-    // Handle the data returned from the widget
-    const handleDataReturned = (data) => {
-        console.log('Received data from widget:', data);
-        // Handle the received data in the external webpage
-        // ... (perform actions with the received data)
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      foo: "bar",
+      resumeData: {}
     };
 
+    ReactGA.initialize("UA-110570651-1");
+    ReactGA.pageview(window.location.pathname);
+  }
+
+  getResumeData() {
+    $.ajax({
+      url: "./resumeData.json",
+      dataType: "json",
+      cache: false,
+      success: function(data) {
+        this.setState({ resumeData: data });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+        alert(err);
+      }
+    });
+  }
+
+  componentDidMount() {
+    this.getResumeData();
+  }
+
+  render() {
     return (
-        <div>
-            <PluralityPopupWidget
-                options={{ apps: 'facebook,twitter' }}
-                onDataReturned={handleDataReturned}
-            />
-        </div>
+      <div className="App">
+        <Header data={this.state.resumeData.main} />
+        {/* <About data={this.state.resumeData.main} />
+        <Resume data={this.state.resumeData.resume} />
+        <Portfolio data={this.state.resumeData.portfolio} />
+        <Contact data={this.state.resumeData.main} />
+        <Footer data={this.state.resumeData.main} /> */}
+      </div>
     );
-};
+  }
+}
 
 export default App;
