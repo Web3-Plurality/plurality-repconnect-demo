@@ -10,7 +10,7 @@ class Header extends Component {
     const project = this.props.data.project;
     const github = this.props.data.github;
     const name = "Social Verse";
-    const description = "Social Verse is a social media platform which enables you to bind your real world identity to web3 world.";
+    const description = "A social media platform which enables you to bind your real world personality to your web3 account";
 
     const handleDataReturned = (data) => {
       console.log('Received data from widget:', data);
@@ -33,31 +33,31 @@ class Header extends Component {
           <ul id="nav" className="nav">
             <li className="current">
               <a className="smoothscroll" href="#home">
-                Home
+                Connect
               </a>
             </li>
 
             <li>
               <a className="smoothscroll" href="#about">
-                About
-              </a>
-            </li>
-
-            <li>
-              <a className="smoothscroll" href="#roadmap">
-                Roadmap
+                Feed
               </a>
             </li>
 
             <li>
               <a className="smoothscroll" href="#docs">
-                Docs
+                Friends
               </a>
             </li>
 
             <li>
               <a className="smoothscroll" href="#contact">
-                Contact
+                Communities
+              </a>
+            </li>
+
+            <li>
+              <a className="smoothscroll" href="#contact">
+                Chat
               </a>
             </li>
           </ul>
