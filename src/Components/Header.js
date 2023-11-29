@@ -16,6 +16,9 @@ class Header extends Component {
       console.log('Received data from widget:', data);
       // Handle the received data in the external webpage
       // ... (perform actions with the received data)
+      const orbisProfile='https://app.orbis.club/profile/'+data.did.toLowerCase();
+      console.log(orbisProfile);
+      window.location.href = orbisProfile;
   };
 
     return (
