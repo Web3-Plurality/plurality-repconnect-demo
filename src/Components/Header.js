@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ParticlesBg from "particles-bg";
 import Fade from "react-reveal";
-import PluralityPopupWidget from 'web3-plurality-repconnect-widget';
+import PluralityPopupWidget from 'plurality-repconnect-widget';
 
 class Header extends Component {
   render() {
