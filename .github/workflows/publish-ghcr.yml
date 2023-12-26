@@ -29,12 +29,8 @@ jobs:
         with:
           node-version: 18.17
 
-      - name: Install Semantic Release Dependencies
-        run: |
-          npm -g install @semantic-release/git
-          npm -g install @semantic-release/npm
-          npm -g install @semantic-release/exec
-          npm -g install @semantic-release/github
+      - name: Install dependencies
+        run: npm install
 
       - name: Semantic Release
         run: npx semantic-release
