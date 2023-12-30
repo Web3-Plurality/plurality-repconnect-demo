@@ -12,8 +12,7 @@ module.exports = {
             && docker push ghcr.io/web3-plurality/plurality-repconnect-demo:latest \\
             && docker tag ghcr.io/web3-plurality/plurality-repconnect-demo:latest ghcr.io/web3-plurality/plurality-repconnect-demo:\${nextRelease.version} \\
             && docker push ghcr.io/web3-plurality/plurality-repconnect-demo:\${nextRelease.version}
-           `,
-          'npmPublish': false
+           `
         }
       ],
       '@semantic-release/git',

@@ -19,6 +19,6 @@ This project forks from [https://github.com/tbakerx/react-resume-template](https
 
 ### 2. Run the project
 ```shell
-yarn install
-yarn start
+npm install
+npm run start
 ```
