@@ -2,23 +2,51 @@ import React, { Component } from "react";
 import ParticlesBg from "particles-bg";
 import Fade from "react-reveal";
 import PluralityPopupWidget from 'plurality-repconnect-widget';
+//import PluralityPopupWidget from './Widget/PluralityPopupWidget';
+import ReactModal from 'react-modal';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false,
+      returnedValue: null,
+      name: "",
+      hobbies: [],
+    };
+    
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+  
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
+
   render() {
     if (!this.props.data) return null;
 
     const project = this.props.data.project;
     const github = this.props.data.github;
     const name = "Social Verse";
-    const description = "A social media platform which enables you to bind your real world personality to your web3 account";
+    const description = "A demo social media platform built on Plurality Network which enables you to bind your real world personality to your web3 account";
 
     const handleDataReturned = (data) => {
+      this.handleOpenModal();
+      this.setState({ returnedValue: data });
+      const userData = JSON.parse(data.profileData.replace(/\\/g, ""))
+      this.setState({ name: userData.name });
+      this.setState({ hobbies: data.assetData})
       console.log('Received data from widget:', data);
       // Handle the received data in the external webpage
       // ... (perform actions with the received data)
-      const orbisProfile='https://app.orbis.club/profile/'+data.did.toLowerCase();
-      console.log(orbisProfile);
-      window.location.href = orbisProfile;
+      //const orbisProfile='https://app.orbis.club/profile/'+data.did.toLowerCase();
+      //console.log(orbisProfile);
+      //window.location.href = orbisProfile;
   };
 
     return (
@@ -93,6 +121,20 @@ class Header extends Component {
           </div>
         </div>
 
+        <ReactModal 
+           isOpen={this.state.showModal}
+           contentLabel="Hello!"
+           appElement={document.getElementById('app')}
+        >
+          <h3>Hello! </h3>{this.state.name} 👋
+          <h3 style={{marginTop: "20px"}}>Based on your social activity you might be interested in:</h3>
+          <ul style={{marginLeft: "20px", marginTop: "20px", listStyleType: "circle"}}>
+            {this.state?.hobbies?.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+          <button onClick={this.handleCloseModal} style={{marginTop: "20px"}}>Close</button>
+        </ReactModal>
         <p className="scrolldown">
           <a className="smoothscroll" href="#about">
             <i className="icon-down-circle"></i>
