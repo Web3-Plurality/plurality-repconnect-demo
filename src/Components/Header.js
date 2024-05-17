@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import ParticlesBg from "particles-bg";
 import Fade from "react-reveal";
-import PluralityPopupWidget from 'plurality-repconnect-widget';
-//import PluralityPopupWidget from './Widget/PluralityPopupWidget';
+import PluralitySocialConnect from 'plurality-social-connect';
+
 import ReactModal from 'react-modal';
 
 class Header extends Component {
+  //childRef = React.createRef();
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +16,7 @@ class Header extends Component {
       hobbies: [],
     };
     
+   // this.childRef = createRef();
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
@@ -36,6 +38,7 @@ class Header extends Component {
     const description = "A demo social media platform built on Plurality Network which enables you to bind your real world personality to your web3 account";
 
     const handleDataReturned = (data) => {
+      //this.childRef.current.closeSocialConnectPopup();
       this.handleOpenModal();
       this.setState({ returnedValue: data });
       const userData = JSON.parse(data.profileData.replace(/\\/g, ""))
@@ -105,10 +108,11 @@ class Header extends Component {
             <hr />
             <Fade bottom duration={2000}>
               <div className="social">
-                <PluralityPopupWidget
+                <PluralitySocialConnect
                   options={{ apps: 'facebook,twitter' }}
                   onDataReturned={handleDataReturned}
                   customization={{ height: '80px', width: '500px'}}
+                  //ref={this.childRef}
                 />
                 {/* <a href={project} className="button btn project-btn">
                   <i className="fa fa-book"></i>Project
