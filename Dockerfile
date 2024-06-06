@@ -6,4 +6,7 @@ COPY package-lock.json /app
 #RUN npm install plurality-repconnect-widget@latest
 RUN npm install
 COPY . /app
-CMD ["npm", "run", "start"]
+RUN npm run build
+RUN npm install -g serve
+EXPOSE 3000
+CMD ["serve", "-s","build"]
